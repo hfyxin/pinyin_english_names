@@ -20,7 +20,7 @@ Run the script ```search_name.py``` will give you a table of English names that 
 | Anna    | 2          | 118826 |
 | Natalie | 3          | 134998 |
 - ```n_syllable``` tells you how many Chinese characters can be interpreted from this name. Usually Chinese given names only have 2 syllables. English names may have 3 or 4.
-- ```cnt``` is the number this name has been used in the given period. In this case there are 144k babies named Mia during year 2000-2014.
+- ```cnt``` is the number this name has been used in the given period. It tells the popularity of the name. In this case there are 144k babies named Mia during year 2000-2014.
 
 The search result is saved in ```pinyin_names.csv```.
 
