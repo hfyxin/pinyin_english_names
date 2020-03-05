@@ -1,5 +1,7 @@
 # Pinyin English Names
-Find English names that can be read in Chinese pinyin.
+Find English names that can be read in Chinese pinyin. 
+
+For example, the English name Luke can be spelled in Chinese pinyin Lu Ke.
 
 # Data Source
 Data files are in ```input_files``` folder.
