@@ -1,4 +1,4 @@
-# Pinyin English Names
+# English Names in Pinyin
 Find English names that can be read in Chinese pinyin. 
 
 For example, the English name Luke can be spelled in Chinese pinyin Lu Ke.
