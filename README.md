@@ -6,7 +6,7 @@ For example, the English name Luke can be spelled in Chinese pinyin Lu Ke.
 # Data Source
 Data files are in ```input_files``` folder.
 - ```NationalNames.csv``` is part of the US baby names dataset.
-  - It contains all registered baby names from 1880 to 2014, ordered by year.
+  - It contains all registered baby names from 1880 to 2014 in United States, ordered by year.
   - Obtained from Kaggle: https://www.kaggle.com/kaggle/us-baby-names/version/2
 - ```pinyin.txt``` contains all possible Chinese pinyin combinations, without intonation.
   - It is created from Chinese character & pinyin dataset ```pinyin_dictionary.txt```, which is obtained from https://github.com/mozillazg/pinyin-data
