@@ -3,22 +3,23 @@ from names_cleanup import filter_name_dataset
 import os.path
 
 def check_suffix(s, lexica, depth=0):
-    
-    depth += 1
+    '''Searches in s for matching strings in lexica.'''
+
+    depth += 1   # recursion depth, number of syllables.
     #print('checking', s, 'depth', depth)
     if s in lexica: return True, depth
-    else:
-        flag = False
-        for i in range(1,len(s)):
-            #print('- checking',i, s[0:i])
-            if s[0:i] in lexica: 
-                flag_r, depth_r = check_suffix(s[i:], lexica, depth)
-                if flag_r:
-                    flag = True
-                    depth = depth_r
-            else: pass
-            if flag: break
-        return flag, depth
+
+    flag = False
+    for i in range(1,len(s)):
+        #print('- checking',i, s[0:i])
+        if s[0:i] in lexica: 
+            flag_r, depth_r = check_suffix(s[i:], lexica, depth)
+            if flag_r:
+                flag = True
+                depth = depth_r
+        else: pass
+        if flag: break
+    return flag, depth
 
 
 def pick_values(df, val_col, cnt_col='cnt', gt_than=10):
@@ -27,7 +28,6 @@ def pick_values(df, val_col, cnt_col='cnt', gt_than=10):
 
 
 if __name__ == "__main__":
-
     # Parameters that might be useful
     name_popularity = 100000   # count of a name. Unpopular name won't be considered.
     pinyin_popularity = 20    # a pinyin's popularity, to filter out rarely used pinyin.
