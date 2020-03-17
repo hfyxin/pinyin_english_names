@@ -45,10 +45,20 @@ def filter_name_dataset(
     names = names.loc[names.year>=year_thres]
     # names.to_csv('NamesYearThres.csv', index=False)
 
-    # count names
-    names_cnt = names.drop(columns=['id','gender','year'])
-    names_cnt = names_cnt.groupby(names_cnt['name']).sum()
-    names_cnt = names_cnt.sort_values(by='cnt', ascending=False)
+    # count male and female names separately
+    names_cnt = names.drop(columns=['id','year'])
+    female_names = names_cnt[names_cnt['gender'] == 'F']
+    female_names = female_names.groupby(female_names['name']).sum()
+    female_names.columns = ['female_cnt']
+    male_names = names_cnt[names_cnt['gender'] == 'M']
+    male_names = male_names.groupby(male_names['name']).sum()
+    male_names.columns = ['male_cnt']
+
+    # merge female names and male names
+    names_cnt = pd.merge(male_names, female_names, on='name', how='outer')
+    names_cnt = names_cnt.fillna(value=0).astype('int')
+
+    # names_cnt = names_cnt.sort_values(by='cnt', ascending=False)
     print(names_cnt.describe())
     names_cnt.to_csv(fn_out)
 

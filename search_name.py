@@ -24,14 +24,16 @@ def check_suffix(s, lexica, depth=0):
 
 def pick_values(df, val_col, cnt_col='cnt', gt_than=10):
     ''' return the values in given df that has more than gt_than counts.'''
+    if cnt_col == 'cnt':
+        names_df['cnt'] = names_df['male_cnt'] + names_df['female_cnt']
     return df[df[cnt_col] > gt_than][val_col].to_list()
 
 
 if __name__ == "__main__":
     # Parameters that might be useful
-    name_popularity = 100000   # count of a name. Unpopular name won't be considered.
-    pinyin_popularity = 20    # a pinyin's popularity, to filter out rarely used pinyin.
-    pinyin_exclusion = ['e']  # some pinyin that you don't want to use.
+    name_popularity = 1000   # count of a name. Unpopular name won't be considered.
+    pinyin_popularity = 10    # a pinyin's popularity, to filter out rarely used pinyin.
+    pinyin_exclusion = ['a', 'e']  # some pinyin that you don't want to use.
 
     # import names list
     names_fn = '.\\input_files\\names_count.csv'
@@ -55,7 +57,9 @@ if __name__ == "__main__":
     pinyin_names = {
         'name':[],
         'n_syllable':[],
-        'cnt':[]
+        'cnt':[],
+        'male_cnt':[],
+        'female_cnt':[],
     }
     for name in names:
         valid, n_syllable = check_suffix(name.lower(), lexica)
@@ -63,6 +67,8 @@ if __name__ == "__main__":
             pinyin_names['name'].append(name)
             pinyin_names['n_syllable'].append(n_syllable)
             pinyin_names['cnt'].append(names_df[names_df.name==name]['cnt'].values[0])
+            pinyin_names['male_cnt'].append(names_df[names_df.name==name]['male_cnt'].values[0])
+            pinyin_names['female_cnt'].append(names_df[names_df.name==name]['female_cnt'].values[0])
     
     # Display and save.
     print('Found {} valid pinyin names out of {}.'.format(
